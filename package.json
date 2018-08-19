@@ -12,5 +12,6 @@
     "start": "electron ."
   },
   "author": "Noah Grove",
-  "license": "ISC"
+  "license": "ISC",
+  "repository":"https://github.com/kuesa/wave"
 }
