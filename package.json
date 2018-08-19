@@ -1,0 +1,16 @@
+{
+  "name": "wave",
+  "version": "0.0.1",
+  "description": "A SID-style music sequencer.",
+  "main": "main.js",
+  "dependencies": {
+    "electron": "^2.0.7",
+    "tone": "^0.12.80"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Noah Grove",
+  "license": "ISC"
+}
