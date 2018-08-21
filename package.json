@@ -7,11 +7,15 @@
     "electron": "^2.0.7",
     "tone": "^0.12.80"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "electron-builder": "^20.28.1"
+  },
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "author": "Noah Grove",
   "license": "ISC",
-  "repository":"https://github.com/kuesa/wave"
+  "repository": "https://github.com/kuesa/wave"
 }
