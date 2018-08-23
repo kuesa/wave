@@ -1,0 +1,62 @@
+// index css
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+
+  p {
+    display: block;
+    color: black;
+    padding: 16px;
+    text-decoration: none;
+    user-select: none;
+    cursor: pointer;
+  }
+
+  //active tab
+  p.active {
+    background-color: navy;
+    color: white;
+  }
+
+  //mouse-over
+  p:hover:not(.active) {
+    background-color: #555;
+    color: white;
+  }
+}
+
+//page content
+div.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: auto;
+}
+
+//sidebar into top bar
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+
+    p {
+      float: left;
+    }
+  }
+
+  div.content {
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .sidebar p {
+    text-align: center;
+    float: none;
+  }
+}

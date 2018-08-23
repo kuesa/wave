@@ -1,13 +1,28 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>WAVE</title>
-    </head>
-    <body>
-        <h1>WAVE</h1>
-        <script>
-            require('./renderer.js')
-        </script>
-    </body>
+
+<head>
+    <meta charset="UTF-8">
+    <title>WAVE</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <!--sidebar nav-->
+    <div class="sidebar">
+        <p class="active" onclick="loadInstruments()">Instruments</p>
+        <p onclick="loadPatterns()">Patterns</p>
+        <p onclick="loadSequencer()">Sequencer</p>
+        <p onclick="loadFile()">File</p>
+    </div>
+
+    <!--main app-->
+    <div class="content">
+
+    </div>
+    <script>
+        require('./index.js')
+    </script>
+</body>
+
 </html>

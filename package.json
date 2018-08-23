@@ -11,7 +11,7 @@
     "electron-builder": "^20.28.1"
   },
   "scripts": {
-    "start": "electron .",
+    "start": "sass index.scss index.css && electron .",
     "pack": "electron-builder --dir",
     "dist": "electron-builder"
   },
