@@ -1,5 +1,5 @@
 {
-  "name": "wave",
+  "name": "WAVE",
   "version": "0.0.1",
   "description": "A SID-style music sequencer.",
   "main": "main.js",
@@ -11,11 +11,11 @@
     "electron-builder": "^20.28.1"
   },
   "scripts": {
-    "start": "sass index.scss index.css && electron .",
+    "start": "sass src/index.scss src/index.css && electron .",
     "pack": "electron-builder --dir",
     "dist": "electron-builder"
   },
   "author": "Noah Grove",
-  "license": "ISC",
+  "license": "MIT",
   "repository": "https://github.com/kuesa/wave"
 }

@@ -4,25 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <title>WAVE</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="src/index.css">
 </head>
 
 <body>
     <!--sidebar nav-->
     <div class="sidebar">
-        <p class="active" onclick="loadInstruments()">Instruments</p>
-        <p onclick="loadPatterns()">Patterns</p>
-        <p onclick="loadSequencer()">Sequencer</p>
-        <p onclick="loadFile()">File</p>
+        <a class="active" id="instrumentLink" href="#instruments" onclick="loadInstrumentsTab()">Instruments</a>
+        <a href="#patterns" id="patternLink" onclick="loadPatternsTab()">Patterns</a>
+        <a href="#sequencer" id="sequencerLink" onclick="loadSequencerTab()">Sequencer</a>
+        <a href="#file" id="fileLink" onclick="loadFileTab()">File</a>
     </div>
 
     <!--main app-->
     <div class="content">
-
+        <div id="instrumentTab">
+            <p>instruments</p>
+        </div>
+        <div hidden id="patternTab">
+            <p>patterns</p>
+        </div>
+        <div hidden id="sequenceTab">
+            <p>sequencer</p>
+        </div>
+        <div hidden id="fileTab">
+            <p>file</p>
+        </div>
     </div>
-    <script>
-        require('./index.js')
-    </script>
+
+    <script src="src/index.js"></script>
 </body>
 
 </html>

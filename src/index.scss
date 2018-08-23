@@ -8,7 +8,7 @@
   height: 100%;
   overflow: auto;
 
-  p {
+  a {
     display: block;
     color: black;
     padding: 16px;
@@ -18,13 +18,13 @@
   }
 
   //active tab
-  p.active {
+  a.active {
     background-color: navy;
     color: white;
   }
 
   //mouse-over
-  p:hover:not(.active) {
+  a:hover:not(.active) {
     background-color: #555;
     color: white;
   }
@@ -37,14 +37,14 @@ div.content {
   height: auto;
 }
 
-//sidebar into top bar
+//sidebar into toabar
 @media screen and (max-width: 700px) {
   .sidebar {
     width: 100%;
     height: auto;
     position: relative;
 
-    p {
+    a {
       float: left;
     }
   }
@@ -55,8 +55,17 @@ div.content {
 }
 
 @media screen and (max-width: 400px) {
-  .sidebar p {
+  .sidebar a {
     text-align: center;
     float: none;
   }
+}
+
+//disable dragging images, links
+*,
+*::after,
+*::before {
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-app-region: no-drag;
 }
