@@ -1,5 +1,5 @@
 {
-  "name": "WAVE",
+  "name": "wave",
   "version": "0.0.1",
   "description": "A SID-style music sequencer.",
   "main": "main.js",
