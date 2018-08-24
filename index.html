@@ -9,17 +9,19 @@
 
 <body>
     <!--sidebar nav-->
-    <div class="sidebar">
-        <a class="active" id="instrumentLink" href="#instruments" onclick="loadInstrumentsTab()">Instruments</a>
-        <a href="#patterns" id="patternLink" onclick="loadPatternsTab()">Patterns</a>
-        <a href="#sequencer" id="sequencerLink" onclick="loadSequencerTab()">Sequencer</a>
-        <a href="#file" id="fileLink" onclick="loadFileTab()">File</a>
+    <div class="sidebar" id="sidebar">
+        <a class="active" id="instrumentLink" href="#instruments" onclick="loadTab('instrumentLink', 'instrumentTab')">Instruments</a>
+        <a href="#patterns" id="patternLink" onclick="loadTab('patternLink', 'patternTab')">Patterns</a>
+        <a href="#sequencer" id="sequencerLink" onclick="loadTab('sequencerLink', 'sequenceTab')">Sequencer</a>
+        <a href="#file" id="fileLink" onclick="loadTab('fileLink', 'fileTab')">File</a>
     </div>
 
     <!--main app-->
-    <div class="content">
-        <div id="instrumentTab">
-            <p>instruments</p>
+    <div class="content" id="content">
+        <div class="active" id="instrumentTab">
+            <ul id="instrumentList"></ul>
+            <button onclick="addInstrument()">Add Instrument</button>
+            <button onclick="removeInstrument()">Remove Instrument</button>
         </div>
         <div hidden id="patternTab">
             <p>patterns</p>
@@ -33,6 +35,7 @@
     </div>
 
     <script src="src/index.js"></script>
+    <script src="src/instruments.js"></script>
 </body>
 
 </html>

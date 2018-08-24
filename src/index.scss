@@ -7,6 +7,7 @@
   position: fixed;
   height: 100%;
   overflow: auto;
+  font-family: Arial, Helvetica, sans-serif;
 
   a {
     display: block;
@@ -35,6 +36,7 @@ div.content {
   margin-left: 200px;
   padding: 1px 16px;
   height: auto;
+  text-align: center;
 }
 
 //sidebar into toabar
@@ -54,11 +56,53 @@ div.content {
   }
 }
 
+//instrument list shape and feel
+#instrumentList {
+  list-style-type: none;
+  margin: 8px;
+  padding: 4px;
+  border: 1px solid gray;
+  border-radius: 4px;
+  height: 200px;
+  overflow: hidden;
+  overflow-y: scroll;
+
+  li {
+    cursor: pointer;
+  }
+
+  li.active {
+    background-color: #555;
+    cursor: default;
+  }
+}
+
 @media screen and (max-width: 400px) {
   .sidebar a {
     text-align: center;
     float: none;
   }
+}
+
+//button style
+button {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: skyblue;
+  display: inline-block;
+  border: 1px solid darkcyan;
+  border-radius: 2px;
+  text-align: center;
+  transition-duration: 0.2s;
+  padding: 8px;
+}
+
+button:hover {
+  background-color: #f1f1f1;
+}
+
+button:active {
+  background-color: darkblue;
+  color: #f1f1f1;
 }
 
 //disable dragging images, links
