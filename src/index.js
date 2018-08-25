@@ -3,6 +3,7 @@
 sidebar = document.getElementById('sidebar');
 content = document.getElementById('content');
 
+//handles user clicking through different page tabs, and sets other tabs as inactive
 function loadTab(linkName, tabName) {
   var currentLink = sidebar.getElementsByClassName('active');
   var currentTab = content.getElementsByClassName('active');

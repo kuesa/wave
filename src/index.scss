@@ -36,7 +36,6 @@ div.content {
   margin-left: 200px;
   padding: 1px 16px;
   height: auto;
-  text-align: center;
 }
 
 //sidebar into toabar
@@ -56,24 +55,105 @@ div.content {
   }
 }
 
-//instrument list shape and feel
-#instrumentList {
-  list-style-type: none;
-  margin: 8px;
-  padding: 4px;
-  border: 1px solid gray;
-  border-radius: 4px;
-  height: 200px;
-  overflow: hidden;
-  overflow-y: scroll;
-
-  li {
-    cursor: pointer;
+#instrumentTab {
+  //button style
+  button {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: skyblue;
+    display: inline-block;
+    border: 1px solid darkcyan;
+    border-radius: 2px;
+    text-align: center;
+    transition-duration: 0.2s;
+    padding: 8px;
   }
 
-  li.active {
-    background-color: #555;
-    cursor: default;
+  button:hover {
+    background-color: #f1f1f1;
+  }
+
+  button:active {
+    background-color: navy;
+    color: #f1f1f1;
+  }
+
+  #instrumentButtons {
+    text-align: center;
+  }
+
+  //instrument list shape and feel
+  #instrumentList {
+    list-style-type: none;
+    margin: 8px;
+    padding: 4px;
+    border: 1px solid gray;
+    border-radius: 4px;
+    height: 200px;
+    overflow: hidden;
+    overflow-y: scroll;
+    text-align: center;
+
+    li {
+      cursor: pointer;
+    }
+
+    li.active {
+      background-color: #555;
+      cursor: default;
+    }
+  }
+
+  #instrumentSettings {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 10px;
+
+    input {
+      margin: 8px 14px;
+
+      &[type='text'] {
+        border-color: #555;
+        margin: 8px 14px;
+        border-style: solid;
+        padding: 8px 10px;
+        border-radius: 4px;
+        background-color: #f1f1f1;
+        border-width: 1px;
+      }
+    }
+
+    .slider {
+      -webkit-appearance: none;
+      margin: 8px 4px;
+      appearance: none;
+      width: 144px;
+      height: 32px;
+      background: #555;
+      outline: none;
+      opacity: 0.7;
+      -webkit-transition: 0.2s;
+      transition: opacity 0.2s;
+      vertical-align: -75%;
+    }
+    .slider:hover {
+      opacity: 1;
+    }
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 16px;
+      height: 32px;
+      background: navy;
+      cursor: pointer;
+    }
+
+    select {
+      margin: 8px 16px;
+      padding: 8px 10px;
+      border-style: solid;
+      border-color: #555;
+      border-radius: 4px;
+      background-color: #f1f1f1;
+    }
   }
 }
 
@@ -82,27 +162,6 @@ div.content {
     text-align: center;
     float: none;
   }
-}
-
-//button style
-button {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: skyblue;
-  display: inline-block;
-  border: 1px solid darkcyan;
-  border-radius: 2px;
-  text-align: center;
-  transition-duration: 0.2s;
-  padding: 8px;
-}
-
-button:hover {
-  background-color: #f1f1f1;
-}
-
-button:active {
-  background-color: darkblue;
-  color: #f1f1f1;
 }
 
 //disable dragging images, links

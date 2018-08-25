@@ -19,17 +19,43 @@
     <!--main app-->
     <div class="content" id="content">
         <div class="active" id="instrumentTab">
+            <!--instruments-->
             <ul id="instrumentList"></ul>
-            <button onclick="addInstrument()">Add Instrument</button>
-            <button onclick="removeInstrument()">Remove Instrument</button>
+            <div id="instrumentButtons">
+                <button onclick="addInstrument()">Add Instrument</button>
+                <button onclick="removeInstrument()">Remove Instrument</button>
+            </div>
+            <div hidden id="instrumentSettings">
+                Instrument: <input id="instName" type="text" name="instName">
+                <br /> Waveform: <select name="instType" id="waveformSelector" onchange="changeWaveform(this.value)">
+                    <option value="pulse" class="active" selected>Pulse</option>
+                    <option value="sawtooth">Sawtooth</option>
+                    <option value="triangle">Triangle</option>
+                    <option value="pwm">PWM</option>
+                    <option value="noise">Noise</option>
+                </select>
+                <br />
+                <div hidden id="pulseWidth">
+                    Pulse Width: <input type="range" id="pWidthSlider" class="slider" name="width" min="0" max="1" step="0.01">
+                    <div id="pWidthText"></div>
+                </div>
+                <div hidden id="modFreq">
+                    Modulation Frequency: <input type="range" id="modFreqSlider" class="slider" name="width" min="0" max="1"
+                        step="0.01">
+                    <div id="modFreqText"></div>
+                </div>
+            </div>
         </div>
         <div hidden id="patternTab">
+            <!--patterns-->
             <p>patterns</p>
         </div>
         <div hidden id="sequenceTab">
+            <!--sequencer-->
             <p>sequencer</p>
         </div>
         <div hidden id="fileTab">
+            <!--file i/o-->
             <p>file</p>
         </div>
     </div>
