@@ -104,12 +104,14 @@ function changeDisplay(inst = null) {
       switch (actualInst.oscillator.type) {
         case 'pulse':
           pWidthContainer.removeAttribute('hidden');
+          pWidthSlider.value = actualInst.oscillator.width.value;
           modFreqContainer.setAttribute('hidden', '');
           waveformSelector.selectedIndex = 0;
           break;
         case 'pwm':
           pWidthContainer.setAttribute('hidden', '');
           modFreqContainer.removeAttribute('hidden');
+          modFreqSlider.value = actualInst.oscillator.modulationFrequency.value;
           waveformSelector.selectedIndex = 3;
           break;
         case 'triangle':
@@ -146,6 +148,7 @@ function changeInstName(instrumentName) {
   instCh[0].innerHTML = instrumentName;
 }
 
+//callback when user changes waveform on drop-down box
 function changeWaveform(waveform) {
   var instCh = instrumentList.getElementsByClassName('active');
   if (typeof instruments[nodeIndex(instCh[0])].oscillator !== 'undefined') {
@@ -178,6 +181,20 @@ function changeWaveform(waveform) {
     }).toMaster();
   }
   changeDisplay(instCh[0]);
+}
+
+//callback when user moves pulse width slider
+function changePulseWidth(pulseWidthValue) {
+  var instCh = instrumentList.getElementsByClassName('active');
+  var pulseInst = instruments[nodeIndex(instCh[0])];
+  pulseInst.oscillator.width.value = pulseWidthValue;
+}
+
+//callback when user moves mod freq slider
+function changeModulationFrequency(modulationFrequency) {
+  var instCh = instrumentList.getElementsByClassName('active');
+  var pwmInst = instruments[nodeIndex(instCh[0])];
+  pwmInst.oscillator.modulationFrequency.value = modulationFrequency;
 }
 
 //indexing a NodeList, which is needed in the removeInstrument() function because "instrument" is not an array
