@@ -91,14 +91,13 @@ function setActive(insID) {
 //choses whether or not to display pulse/pwm info, and auto-fills other info.
 function changeDisplay(inst = null) {
   var waveformSelector = document.getElementById('waveformSelector');
+  var instrumentNameContainer = document.getElementById('instName');
 
   if (inst !== null) {
     var actualInst = instruments[nodeIndex(inst)];
     //unhides all settings
     instrumentSettingsContainer.removeAttribute('hidden');
-    document
-      .getElementById('instName')
-      .setAttribute('value', inst.childNodes[0].nodeValue);
+    instrumentNameContainer.value = inst.innerHTML;
 
     //determines what slider to display, and noise vs regular
     if (typeof actualInst.oscillator !== 'undefined') {
@@ -139,6 +138,12 @@ function changeDisplay(inst = null) {
     modFreqContainer.setAttribute('hidden', '');
     instrumentSettingsContainer.setAttribute('hidden', '');
   }
+}
+
+//changes instrument name and list name
+function changeInstName(instrumentName) {
+  var instCh = instrumentList.getElementsByClassName('active');
+  instCh[0].innerHTML = instrumentName;
 }
 
 function changeWaveform(waveform) {
