@@ -46,6 +46,8 @@
                     <div id="modFreqText"></div>
                 </div>
             </div>
+            <p id="bigspace"></p>
+            <div id='keyboard'></div>
         </div>
         <div hidden id="patternTab">
             <!--patterns-->
@@ -63,6 +65,36 @@
 
     <script src="src/index.js"></script>
     <script src="src/instruments.js"></script>
+    <script src="src/qwerty-hancock.js"></script>
+    <script>
+        var keyboard = new QwertyHancock({
+            id: 'keyboard',
+            width: 600,
+            height: 150,
+            octaves: 2,
+            startNote: 'A3',
+            whiteNotesColour: 'white',
+            blackNotesColour: 'black',
+            hoverColour: '#000080'
+        });
+
+        keyboard.keyDown = function (note, frequency) {
+            let instCh = instrumentList.getElementsByClassName('active');
+            if (instCh[0] !== null) {
+                let activeInst = instruments[nodeIndex(instCh[0])];
+                activeInst.triggerAttack(note);
+            }
+        };
+
+        keyboard.keyUp = function (note, frequency) {
+            let instCh = instrumentList.getElementsByClassName('active');
+            if (instCh !== null) {
+                let activeInst = instruments[nodeIndex(instCh[0])];
+                activeInst.triggerRelease();
+            }
+        };
+
+    </script>
 </body>
 
 </html>

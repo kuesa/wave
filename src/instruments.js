@@ -80,7 +80,7 @@ function removeInstrument() {
 
 //onclick callback for when an instrument is clicked, it will be highlighted on the list
 function setActive(insID) {
-  var current = instrumentList.getElementsByClassName('active');
+  let current = instrumentList.getElementsByClassName('active');
   if (current[0] != null) {
     current[0].setAttribute('class', '');
   }
@@ -90,11 +90,11 @@ function setActive(insID) {
 
 //choses whether or not to display pulse/pwm info, and auto-fills other info.
 function changeDisplay(inst = null) {
-  var waveformSelector = document.getElementById('waveformSelector');
-  var instrumentNameContainer = document.getElementById('instName');
+  let waveformSelector = document.getElementById('waveformSelector');
+  let instrumentNameContainer = document.getElementById('instName');
 
   if (inst !== null) {
-    var actualInst = instruments[nodeIndex(inst)];
+    let actualInst = instruments[nodeIndex(inst)];
     //unhides all settings
     instrumentSettingsContainer.removeAttribute('hidden');
     instrumentNameContainer.value = inst.innerHTML;
@@ -144,13 +144,13 @@ function changeDisplay(inst = null) {
 
 //changes instrument name and list name
 function changeInstName(instrumentName) {
-  var instCh = instrumentList.getElementsByClassName('active');
+  let instCh = instrumentList.getElementsByClassName('active');
   instCh[0].innerHTML = instrumentName;
 }
 
 //callback when user changes waveform on drop-down box
 function changeWaveform(waveform) {
-  var instCh = instrumentList.getElementsByClassName('active');
+  let instCh = instrumentList.getElementsByClassName('active');
   if (typeof instruments[nodeIndex(instCh[0])].oscillator !== 'undefined') {
     if (waveform != 'noise') {
       instruments[nodeIndex(instCh[0])].oscillator.type = waveform;
@@ -185,21 +185,21 @@ function changeWaveform(waveform) {
 
 //callback when user moves pulse width slider
 function changePulseWidth(pulseWidthValue) {
-  var instCh = instrumentList.getElementsByClassName('active');
-  var pulseInst = instruments[nodeIndex(instCh[0])];
+  let instCh = instrumentList.getElementsByClassName('active');
+  let pulseInst = instruments[nodeIndex(instCh[0])];
   pulseInst.oscillator.width.value = pulseWidthValue;
 }
 
 //callback when user moves mod freq slider
 function changeModulationFrequency(modulationFrequency) {
-  var instCh = instrumentList.getElementsByClassName('active');
-  var pwmInst = instruments[nodeIndex(instCh[0])];
+  let instCh = instrumentList.getElementsByClassName('active');
+  let pwmInst = instruments[nodeIndex(instCh[0])];
   pwmInst.oscillator.modulationFrequency.value = modulationFrequency;
 }
 
 //indexing a NodeList, which is needed in the removeInstrument() function because "instrument" is not an array
 function nodeIndex(el) {
-  var children = el.parentNode.childNodes,
+  let children = el.parentNode.childNodes,
     i = 0;
   for (; i < children.length; i++) {
     if (children[i] == el) {
