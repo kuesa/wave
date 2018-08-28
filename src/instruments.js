@@ -16,6 +16,8 @@ var pWidthContainer = document.getElementById('pulseWidth');
 var modFreqContainer = document.getElementById('modFreq');
 var pWidthSlider = document.getElementById('pWidthSlider');
 var modFreqSlider = document.getElementById('modFreqSlider');
+var pWidthText = document.getElementById('pWidthText');
+var modFreqTest = document.getElementById('modFreqText');
 
 function addInstrument(noise = false) {
   //when user clicks "create instrument", default instrument is created and added to array, text is added to list. It will also add noise synths, if you tell it to.
@@ -29,7 +31,7 @@ function addInstrument(noise = false) {
         attack: 0.005,
         decay: 0.1,
         sustain: 0.3,
-        release: 1
+        release: 0.1
       }
     }).toMaster();
   } else {
@@ -188,6 +190,7 @@ function changePulseWidth(pulseWidthValue) {
   let instCh = instrumentList.getElementsByClassName('active');
   let pulseInst = instruments[nodeIndex(instCh[0])];
   pulseInst.oscillator.width.value = pulseWidthValue;
+  pWidthText.innerHTML = pulseWidthValue;
 }
 
 //callback when user moves mod freq slider
@@ -195,6 +198,7 @@ function changeModulationFrequency(modulationFrequency) {
   let instCh = instrumentList.getElementsByClassName('active');
   let pwmInst = instruments[nodeIndex(instCh[0])];
   pwmInst.oscillator.modulationFrequency.value = modulationFrequency;
+  modFreqTest.innerHTML = modulationFrequency;
 }
 
 //indexing a NodeList, which is needed in the removeInstrument() function because "instrument" is not an array
