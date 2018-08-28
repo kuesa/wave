@@ -5,8 +5,8 @@ content = document.getElementById('content');
 
 //handles user clicking through different page tabs, and sets other tabs as inactive
 function loadTab(linkName, tabName) {
-  var currentLink = sidebar.getElementsByClassName('active');
-  var currentTab = content.getElementsByClassName('active');
+  var currentLink = sidebar.getElementsByClassName('activeNav');
+  var currentTab = content.getElementsByClassName('activeNav');
   var newLink = document.getElementById(linkName);
   var newTab = document.getElementById(tabName);
 
@@ -14,7 +14,7 @@ function loadTab(linkName, tabName) {
   currentTab[0].setAttribute('hidden', '');
   currentTab[0].setAttribute('class', '');
 
-  newLink.setAttribute('class', 'active');
+  newLink.setAttribute('class', 'activeNav');
   newTab.removeAttribute('hidden');
-  newTab.setAttribute('class', 'active');
+  newTab.setAttribute('class', 'activeNav');
 }
