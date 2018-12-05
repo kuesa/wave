@@ -1,73 +1,172 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>WAVE</title>
-    <link rel="stylesheet" href="src/index.css">
-</head>
+    <link rel="stylesheet" href="src/index.css" />
+  </head>
 
-<body>
-    <!--sidebar nav-->
+  <body>
+    <!-- sidebar nav -->
     <div class="sidebar" id="sidebar">
-        <a class="activeNav" id="instrumentLink" href="#instruments" onclick="loadTab('instrumentLink', 'instrumentTab')">Instruments</a>
-        <a href="#patterns" id="patternLink" onclick="loadTab('patternLink', 'patternTab')">Patterns</a>
-        <a href="#sequencer" id="sequencerLink" onclick="loadTab('sequencerLink', 'sequenceTab')">Sequencer</a>
-        <a href="#file" id="fileLink" onclick="loadTab('fileLink', 'fileTab')">File</a>
+      <a
+        class="activeNav"
+        id="instrumentLink"
+        href="#instruments"
+        onclick="loadTab('instrumentLink', 'instrumentTab')"
+        >Instruments</a
+      >
+      <a
+        href="#patterns"
+        id="patternLink"
+        onclick="loadTab('patternLink', 'patternTab')"
+        >Patterns</a
+      >
+      <a
+        href="#sequencer"
+        id="sequencerLink"
+        onclick="loadTab('sequencerLink', 'sequenceTab')"
+        >Sequencer</a
+      >
+      <a href="#file" id="fileLink" onclick="loadTab('fileLink', 'fileTab')"
+        >File</a
+      >
     </div>
 
-    <!--main app-->
+    <!-- main app -->
     <div class="content" id="content">
-        <div class="activeNav" id="instrumentTab">
-            <!--instruments-->
-            <ul id="instrumentList"></ul>
-            <div id="instrumentButtons">
-                <button onclick="addInstrument()">Add Instrument</button>
-                <button onclick="removeInstrument()">Remove Instrument</button>
-            </div>
-            <div hidden id="instrumentSettings">
-                Instrument: <input id="instName" type="text" name="instName" oninput="changeInstName(this.value)" />
-                <br /> Waveform: <select name="instType" id="waveformSelector" onchange="changeWaveform(this.value)">
-                    <option value="pulse" class="active" selected>Pulse</option>
-                    <option value="sawtooth">Sawtooth</option>
-                    <option value="triangle">Triangle</option>
-                    <option value="pwm">PWM</option>
-                    <option value="noise">Noise</option>
-                </select>
-                <br />
-                <div hidden id="pulseWidth">
-                    Pulse Width: <input type="range" id="pWidthSlider" class="slider" name="width" min="0" max="1" step="0.01"
-                        oninput="changePulseWidth(this.value)">
-                    <span id="pWidthText"></span>
-                </div>
-                <div hidden id="modFreq">
-                    Modulation Frequency: <input type="range" id="modFreqSlider" class="slider" name="width" min="0" max="1"
-                        step="0.01" oninput="changeModulationFrequency(this.value)">
-                    <span id="modFreqText"></span>
-                </div>
-            </div>
-            <p id="bigspace"></p>
-            <div id='keyboard'></div>
+      <div class="activeNav" id="instrumentTab">
+        <!-- instruments -->
+        <ul id="instrumentList"></ul>
+        <div id="instrumentButtons">
+          <button onclick="addInstrument()">Add Instrument</button>
+          <button onclick="removeInstrument()">Remove Instrument</button>
         </div>
-        <div hidden id="patternTab">
-            <!--patterns-->
-            <p>patterns</p>
+        <div hidden id="instrumentSettings">
+          Instrument:
+          <input
+            id="instName"
+            type="text"
+            name="instName"
+            oninput="changeInstName(this.value)"
+          />
+          <br />
+          Waveform:
+          <select
+            name="instType"
+            id="waveformSelector"
+            onchange="changeWaveform(this.value)"
+          >
+            <option value="pulse" class="active" selected>Pulse</option>
+            <option value="sawtooth">Sawtooth</option>
+            <option value="triangle">Triangle</option>
+            <option value="pwm">PWM</option>
+            <option value="noise">Noise</option>
+          </select>
+          <br />
+          <div hidden id="pulseWidth">
+            Pulse Width:
+            <input
+              type="range"
+              id="pWidthSlider"
+              class="slider"
+              name="width"
+              min="0"
+              max="1"
+              step="0.01"
+              oninput="changePulseWidth(this.value)"
+            />
+            <span id="pWidthText"></span>
+          </div>
+          <div hidden id="modFreq">
+            Modulation Frequency:
+            <input
+              type="range"
+              id="modFreqSlider"
+              class="slider"
+              name="width"
+              min="0"
+              max="1"
+              step="0.01"
+              oninput="changeModulationFrequency(this.value)"
+            />
+            <span id="modFreqText"></span>
+          </div>
+          <div id="attack">
+            Attack:
+            <input
+              type="range"
+              id="attackSlider"
+              class="slider"
+              name="width"
+              min="0"
+              max="1"
+              step="0.01"
+              oninput="changeAttack(this.value)"
+            />
+          </div>
+          <div id="decay">
+            Decay:
+            <input
+              type="range"
+              id="decaySlider"
+              class="slider"
+              name="width"
+              min="0"
+              max="1"
+              step="0.01"
+              oninput="changeDecay(this.value)"
+            />
+          </div>
+          <div id="sustain">
+            Sustain:
+            <input
+              type="range"
+              id="sustainSlider"
+              class="slider"
+              name="width"
+              min="0"
+              max="1"
+              step="0.01"
+              oninput="changeSustain(this.value)"
+            />
+          </div>
+          <div id="release">
+            Release:
+            <input
+              type="range"
+              id="releaseSlider"
+              class="slider"
+              name="width"
+              min="0"
+              max="1"
+              step="0.01"
+              oninput="changeRelease(this.value)"
+            />
+          </div>
         </div>
-        <div hidden id="sequenceTab">
-            <!--sequencer-->
-            <p>sequencer</p>
-        </div>
-        <div hidden id="fileTab">
-            <!--file i/o-->
-            <p>file</p>
-        </div>
+        <p id="bigspace"></p>
+        <div id="keyboard"></div>
+      </div>
+      <div hidden id="patternTab">
+        <!-- patterns -->
+        <p>patterns</p>
+      </div>
+      <div hidden id="sequenceTab">
+        <!-- sequencer -->
+        <p>sequencer</p>
+      </div>
+      <div hidden id="fileTab">
+        <!-- file i/o -->
+        <p>file</p>
+      </div>
     </div>
 
     <script src="src/index.js"></script>
     <script src="src/instruments.js"></script>
-    <script src="src/qwerty-hancock.js"></script>
+    <!-- script src="src/qwerty-hancock.js"></script -->
     <script>
-        //TODO: Fix instrument playback - it seems like when you re-activate the instrument while it is still releasing this will reset the duty cycle / mod frequency
+      /*//TODO: Fix instrument playback - it seems like when you re-activate the instrument while it is still releasing this will reset the duty cycle / mod frequency
         var keyboard = new QwertyHancock({
             id: 'keyboard',
             width: 600,
@@ -93,9 +192,7 @@
                 let activeInst = instruments[nodeIndex(instCh[0])];
                 activeInst.triggerRelease();
             }
-        };
-
+        };*/
     </script>
-</body>
-
+  </body>
 </html>

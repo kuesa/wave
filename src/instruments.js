@@ -19,6 +19,8 @@ var modFreqSlider = document.getElementById('modFreqSlider');
 var pWidthText = document.getElementById('pWidthText');
 var modFreqTest = document.getElementById('modFreqText');
 
+//TODO: Add adsr slider text
+
 function addInstrument(noise = false) {
   //when user clicks "create instrument", default instrument is created and added to array, text is added to list. It will also add noise synths, if you tell it to.
   if (noise == false) {
@@ -199,6 +201,34 @@ function changeModulationFrequency(modulationFrequency) {
   let pwmInst = instruments[nodeIndex(instCh[0])];
   pwmInst.oscillator.modulationFrequency.value = modulationFrequency;
   modFreqTest.innerHTML = modulationFrequency;
+}
+
+//callback for changing attack
+function changeAttack(attack) {
+  let instCh = instrumentList.getElementsByClassName('active');
+  let inst = instruments[nodeIndex(instCh[0])];
+  inst.envelope.attack.value = attack;
+}
+
+//callback for changing decay
+function changeDecay(decay) {
+  let instCh = instrumentList.getElementsByClassName('active');
+  let inst = instruments[nodeIndex(instCh[0])];
+  inst.envelope.decay.value = decay;
+}
+
+//callback for changing sustain
+function changeSustain(sustain) {
+  let instCh = instrumentList.getElementsByClassName('active');
+  let inst = instruments[nodeIndex(instCh[0])];
+  inst.envelope.sustain.value = sustain;
+}
+
+//callback for changing release
+function changeRelease(release) {
+  let instCh = instrumentList.getElementsByClassName('active');
+  let inst = instruments[nodeIndex(instCh[0])];
+  inst.envelope.release.value = release;
 }
 
 //indexing a NodeList, which is needed in the removeInstrument() function because "instrument" is not an array
