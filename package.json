@@ -5,8 +5,7 @@
   "main": "main.js",
   "dependencies": {
     "electron": "^2.0.7",
-    "tone": "^0.12.80",
-    "qwerty-hancock": "^0.6.0"
+    "tone": "^0.12.80"
   },
   "devDependencies": {
     "electron-builder": "^20.28.1"

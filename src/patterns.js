@@ -1,8 +1,10 @@
-//pattern creation/management
+// Pattern creation/management
+
+var instrumentSelector = document.getElementById('instrumentSelector');
 
 patternTable = document.getElementById('patternTable');
 
-// create table elements. 16(max pattern size) x 96(number of different notes)
+// Create table elements. 16(max pattern size) x 96(number of different notes)
 for (let i = 0; i < 96; i++) {
   var tr = patternTable.insertRow();
   for (let j = 0; j < 16; j++) {
@@ -12,4 +14,19 @@ for (let i = 0; i < 96; i++) {
       this.innerHTML = 'x';
     };
   }
+}
+
+function addOption(name) {
+  let option = document.createElement("option");
+  option.text = name;
+  instrumentSelector.add(option);
+}
+
+function removeOption(index){
+  instrumentSelector.remove(index);
+}
+
+function changeOption(index, newName){
+  let options = instrumentSelector.options;
+  options[index].text = newName;
 }

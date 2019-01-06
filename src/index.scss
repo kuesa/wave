@@ -157,6 +157,12 @@ div.content {
   }
 }
 
+#patternTable {
+  width: 100%;
+  tr:nth-child(even) {background-color: #f2f2f2;}
+  tr:hover {background-color: #6e6e6e;}
+}
+
 #bigspace {
   margin: 50px;
 }

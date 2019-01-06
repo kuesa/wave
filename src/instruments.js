@@ -1,17 +1,17 @@
-//instrument creation/management
+// Instrument creation/management
 const Tone = require('tone');
 
-//instrument array storage
+// Instrument array storage
 var instruments = new Array();
 var instrumentList = document.getElementById('instrumentList');
 
-//instrument count, a cheap fix to prevent duplicate default names.
+// Instrument count, a cheap fix to prevent duplicate default names.
 var insCount = 1;
 
-//instrument settings container, and other stuff
+// Instrument settings container, and other stuff
 var instrumentSettingsContainer = document.getElementById('instrumentSettings');
 
-//pulse width and pwm sliders, hidden based on what instrument is selected.
+// Pulse width and pwm sliders, hidden based on what instrument is selected.
 var pWidthContainer = document.getElementById('pulseWidth');
 var modFreqContainer = document.getElementById('modFreq');
 var pWidthSlider = document.getElementById('pWidthSlider');
@@ -19,10 +19,10 @@ var modFreqSlider = document.getElementById('modFreqSlider');
 var pWidthText = document.getElementById('pWidthText');
 var modFreqTest = document.getElementById('modFreqText');
 
-//TODO: Add adsr slider text
+// TODO: Make the settings pretty.
 
 function addInstrument(noise = false) {
-  //when user clicks "create instrument", default instrument is created and added to array, text is added to list. It will also add noise synths, if you tell it to.
+  // When user clicks "create instrument", default instrument is created and added to array, text is added to list. It will also add noise synths, if you tell it to.
   if (noise == false) {
     var synth = new Tone.Synth({
       oscillator: {
@@ -51,15 +51,19 @@ function addInstrument(noise = false) {
 
   instruments.push(synth);
 
-  //creates list element with text name in field.
-  //TODO: Low Priority, fix adding instrument numbers that adds based on numbers missing instead of just increasing every new addition.
+  // Refresh instrument list on pattern tab
+  // TODO: Make this more robust, have all of the changes happen here.
+  addOption("Instrument" + insCount);
+
+  // Creates list element with text name in field.
+  // TODO: Low Priority, fix adding instrument numbers that adds based on numbers missing instead of just increasing every new addition.
   var node = document.createElement('li');
   var textnode = document.createTextNode('Instrument ' + insCount);
   insCount++;
 
   node.appendChild(textnode);
 
-  //setting instrument to "active" so that when it is created it is highlighted
+  // Setting instrument to "active" so that when it is created it is highlighted
   var current = instrumentList.getElementsByClassName('active');
   if (current[0] != null) {
     current[0].setAttribute('class', '');
@@ -75,14 +79,18 @@ function addInstrument(noise = false) {
 }
 
 function removeInstrument() {
-  //TODO: Fix removal of instruments. How can you take it out and preserve the name? Something iterative?
+  // TODO: Fix removal of instruments. How can you take it out and preserve the name? Something iterative?
   instRm = instrumentList.getElementsByClassName('active');
   instruments.splice(nodeIndex(instRm[0]), 1);
   instrumentList.removeChild(instRm[0]);
+  
+  // Removes instrument from Pattern menu
+  removeOption(nodeIndex(instRm));
+
   changeDisplay();
 }
 
-//onclick callback for when an instrument is clicked, it will be highlighted on the list
+// Onclick callback for when an instrument is clicked, it will be highlighted on the list
 function setActive(insID) {
   let current = instrumentList.getElementsByClassName('active');
   if (current[0] != null) {
@@ -92,18 +100,18 @@ function setActive(insID) {
   changeDisplay(insID);
 }
 
-//choses whether or not to display pulse/pwm info, and auto-fills other info.
+// Choses whether or not to display pulse/pwm info, and auto-fills other info.
 function changeDisplay(inst = null) {
   let waveformSelector = document.getElementById('waveformSelector');
   let instrumentNameContainer = document.getElementById('instName');
 
   if (inst !== null) {
     let actualInst = instruments[nodeIndex(inst)];
-    //unhides all settings
+    // Unhides all settings
     instrumentSettingsContainer.removeAttribute('hidden');
     instrumentNameContainer.value = inst.innerHTML;
 
-    //determines what slider to display, and noise vs regular
+    // Determines what slider to display, and noise vs regular
     if (typeof actualInst.oscillator !== 'undefined') {
       switch (actualInst.oscillator.type) {
         case 'pulse':
@@ -139,20 +147,23 @@ function changeDisplay(inst = null) {
       waveformSelector.selectedIndex = 4;
     }
   } else {
-    //hides all settings
+    // Hides all settings
     pWidthContainer.setAttribute('hidden', '');
     modFreqContainer.setAttribute('hidden', '');
     instrumentSettingsContainer.setAttribute('hidden', '');
   }
 }
 
-//changes instrument name and list name
+// Changes instrument name and list name
 function changeInstName(instrumentName) {
   let instCh = instrumentList.getElementsByClassName('active');
   instCh[0].innerHTML = instrumentName;
+
+  // Changes instrument name in pattern menu
+  changeOption(nodeIndex(instCh[0]), instrumentName);
 }
 
-//callback when user changes waveform on drop-down box
+// Callback when user changes waveform on drop-down box
 function changeWaveform(waveform) {
   let instCh = instrumentList.getElementsByClassName('active');
   if (typeof instruments[nodeIndex(instCh[0])].oscillator !== 'undefined') {
@@ -187,7 +198,7 @@ function changeWaveform(waveform) {
   changeDisplay(instCh[0]);
 }
 
-//callback when user moves pulse width slider
+// Callback when user moves pulse width slider
 function changePulseWidth(pulseWidthValue) {
   let instCh = instrumentList.getElementsByClassName('active');
   let pulseInst = instruments[nodeIndex(instCh[0])];
@@ -195,7 +206,7 @@ function changePulseWidth(pulseWidthValue) {
   pWidthText.innerHTML = pulseWidthValue;
 }
 
-//callback when user moves mod freq slider
+// Callback when user moves mod freq slider
 function changeModulationFrequency(modulationFrequency) {
   let instCh = instrumentList.getElementsByClassName('active');
   let pwmInst = instruments[nodeIndex(instCh[0])];
@@ -203,35 +214,35 @@ function changeModulationFrequency(modulationFrequency) {
   modFreqTest.innerHTML = modulationFrequency;
 }
 
-//callback for changing attack
+// Callback for changing attack
 function changeAttack(attack) {
   let instCh = instrumentList.getElementsByClassName('active');
   let inst = instruments[nodeIndex(instCh[0])];
   inst.envelope.attack.value = attack;
 }
 
-//callback for changing decay
+// Callback for changing decay
 function changeDecay(decay) {
   let instCh = instrumentList.getElementsByClassName('active');
   let inst = instruments[nodeIndex(instCh[0])];
   inst.envelope.decay.value = decay;
 }
 
-//callback for changing sustain
+// Callback for changing sustain
 function changeSustain(sustain) {
   let instCh = instrumentList.getElementsByClassName('active');
   let inst = instruments[nodeIndex(instCh[0])];
   inst.envelope.sustain.value = sustain;
 }
 
-//callback for changing release
+// Callback for changing release
 function changeRelease(release) {
   let instCh = instrumentList.getElementsByClassName('active');
   let inst = instruments[nodeIndex(instCh[0])];
   inst.envelope.release.value = release;
 }
 
-//indexing a NodeList, which is needed in the removeInstrument() function because "instrument" is not an array
+// Indexing a NodeList, which is needed in the removeInstrument() function because "instrument" is not an array
 function nodeIndex(el) {
   let children = el.parentNode.childNodes,
     i = 0;
